@@ -12,8 +12,8 @@ interface UnitRowProps {
 const UnitRow: React.FC<UnitRowProps> = ({ unit, isSelected, onSelect }) => {
   return (
     <div 
-      className={`p-2 flex items-center hover:bg-black/30 cursor-pointer ${
-        isSelected ? 'bg-black/40' : ''
+      className={`p-2 flex items-center hover:bg-black/40 cursor-pointer ${
+        isSelected ? 'bg-black/50' : ''
       }`}
       onClick={onSelect}
     >
@@ -26,7 +26,7 @@ const UnitRow: React.FC<UnitRowProps> = ({ unit, isSelected, onSelect }) => {
         </div>
       </div>
       
-      <button className="p-1 hover:bg-black/40 rounded text-gray-400">
+      <button className="p-1 hover:bg-black/50 rounded text-gray-400">
         <MoreVertical size={14} />
       </button>
     </div>
