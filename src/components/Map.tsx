@@ -67,6 +67,8 @@ const MapView: React.FC<MapViewProps> = ({
         style={{ width: '100%', height: '100%' }}
         cursor="grab"
         interactive={true}
+        dragPan={true}
+        scrollZoom={true}
       >
         {/* Render boundaries */}
         <Source type="geojson" data={boundariesGeoJSON}>
