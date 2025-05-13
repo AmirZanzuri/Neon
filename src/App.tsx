@@ -27,8 +27,8 @@ function App() {
     setShowUnitDetails(false);
   };
 
-  const handleCloseUnitPanel = () => {
-    setShowUnitPanel(false);
+  const handleToggleUnitPanel = () => {
+    setShowUnitPanel(!showUnitPanel);
   };
   
   const getUnitDetailsPosition = () => {
@@ -37,21 +37,16 @@ function App() {
       right: '10%',
     };
   };
+
+  const updatedToolbarButtons = toolbarButtonsMock.map(button => 
+    button.id === 'map-layers' 
+      ? { ...button, action: handleToggleUnitPanel }
+      : button
+  );
   
   return (
     <div className="flex h-screen bg-gray-900 text-white overflow-hidden">
-      {showUnitPanel && (
-        <div className="w-64 flex-shrink-0 h-full">
-          <UnitPanel 
-            units={units} 
-            onSelectUnit={handleSelectUnit}
-            selectedUnit={selectedUnit}
-            onClose={handleCloseUnitPanel}
-          />
-        </div>
-      )}
-      
-      <div className="flex-1 relative">
+      <div className="absolute inset-0">
         <Map 
           units={units}
           targets={targetsMock}
@@ -59,10 +54,23 @@ function App() {
           onSelectUnit={handleSelectUnit}
           selectedUnitId={selectedUnit?.id || null}
         />
-        
+      </div>
+
+      {showUnitPanel && (
+        <div className="relative w-64 flex-shrink-0 h-full z-10">
+          <UnitPanel 
+            units={units} 
+            onSelectUnit={handleSelectUnit}
+            selectedUnit={selectedUnit}
+            onClose={handleToggleUnitPanel}
+          />
+        </div>
+      )}
+      
+      <div className="relative flex-1">
         {showUnitDetails && selectedUnit && (
           <div 
-            className="absolute z-10"
+            className="absolute z-20"
             style={getUnitDetailsPosition()}
           >
             <UnitDetails 
@@ -73,7 +81,7 @@ function App() {
         )}
 
         <Header />
-        <Toolbar buttons={toolbarButtonsMock} />
+        <Toolbar buttons={updatedToolbarButtons} />
       </div>
     </div>
   );
