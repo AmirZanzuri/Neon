@@ -34,7 +34,7 @@ const UnitPanel: React.FC<UnitPanelProps> = ({ units, onSelectUnit, selectedUnit
   };
   
   return (
-    <div className="h-full flex flex-col bg-black/95">
+    <div className="h-full flex flex-col bg-black/87">
       <div className="flex-shrink-0 p-2 space-y-2">
         <div className="flex items-center justify-between">
           <h2 className="text-sm font-semibold">FFT</h2>
