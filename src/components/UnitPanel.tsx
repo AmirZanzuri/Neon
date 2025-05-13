@@ -87,7 +87,7 @@ const UnitPanel: React.FC<UnitPanelProps> = ({ units, onSelectUnit, selectedUnit
         </div>
       </div>
       
-      <div className="flex-1 overflow-y-auto min-h-0 bg-[#243552]/85 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-[#2d4266]/85 [&::-webkit-scrollbar-thumb]:rounded-full">
+      <div className="flex-1 overflow-y-auto min-h-0 bg-[#243552]/72 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-[#2d4266]/85 [&::-webkit-scrollbar-thumb]:rounded-full">
         {echelons.map(echelon => (
           <div key={`echelon-${echelon}`} className="border-b border-[#2d4266]/85">
             <button 
