@@ -61,6 +61,9 @@ const MapView: React.FC<MapViewProps> = ({
         onMove={evt => setViewState(evt.viewState)}
         mapStyle="mapbox://styles/mapbox/satellite-v9"
         mapboxAccessToken="pk.eyJ1IjoiYW10cnRtIiwiYSI6ImNrcWJzdG41aTBsbHEyb2sxeTdsa2FkOG4ifQ.bmaBLt4tVWrM4CVr5DLVYQ"
+        dragRotate={false}
+        attributionControl={false}
+        reuseMaps
       >
         {/* Render boundaries */}
         <Source type="geojson" data={boundariesGeoJSON}>
