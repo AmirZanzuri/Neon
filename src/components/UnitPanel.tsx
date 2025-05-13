@@ -7,9 +7,10 @@ interface UnitPanelProps {
   units: Unit[];
   onSelectUnit: (unit: Unit) => void;
   selectedUnit: Unit | null;
+  onClose: () => void;
 }
 
-const UnitPanel: React.FC<UnitPanelProps> = ({ units, onSelectUnit, selectedUnit }) => {
+const UnitPanel: React.FC<UnitPanelProps> = ({ units, onSelectUnit, selectedUnit, onClose }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [expandedEchelons, setExpandedEchelons] = useState<number[]>([1, 2]);
   
@@ -47,7 +48,10 @@ const UnitPanel: React.FC<UnitPanelProps> = ({ units, onSelectUnit, selectedUnit
             <button className="p-1 border border-gray-600/90 rounded-sm">
               <span className="sr-only">Move</span>
             </button>
-            <button className="p-1 text-gray-400 hover:text-white">
+            <button 
+              className="p-1 text-gray-400 hover:text-white"
+              onClick={onClose}
+            >
               <X size={14} />
             </button>
           </div>

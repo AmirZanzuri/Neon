@@ -16,6 +16,7 @@ function App() {
   const [units, setUnits] = useState<Unit[]>(unitsMock);
   const [selectedUnit, setSelectedUnit] = useState<Unit | null>(null);
   const [showUnitDetails, setShowUnitDetails] = useState<boolean>(false);
+  const [showUnitPanel, setShowUnitPanel] = useState<boolean>(true);
   
   const handleSelectUnit = (unit: Unit) => {
     setSelectedUnit(unit);
@@ -24,6 +25,10 @@ function App() {
   
   const handleCloseUnitDetails = () => {
     setShowUnitDetails(false);
+  };
+
+  const handleCloseUnitPanel = () => {
+    setShowUnitPanel(false);
   };
   
   const getUnitDetailsPosition = () => {
@@ -36,15 +41,7 @@ function App() {
   return (
     <div className="flex flex-col h-screen bg-gray-900 text-white relative">
       <div className="flex-1 flex overflow-hidden relative">
-        <div className="w-64 flex-shrink-0">
-          <UnitPanel 
-            units={units} 
-            onSelectUnit={handleSelectUnit}
-            selectedUnit={selectedUnit}
-          />
-        </div>
-        
-        <div className="flex-1 relative">
+        <div className="absolute inset-0">
           <Map 
             units={units}
             targets={targetsMock}
@@ -52,7 +49,20 @@ function App() {
             onSelectUnit={handleSelectUnit}
             selectedUnitId={selectedUnit?.id || null}
           />
-          
+        </div>
+
+        {showUnitPanel && (
+          <div className="relative z-10 w-64 flex-shrink-0">
+            <UnitPanel 
+              units={units} 
+              onSelectUnit={handleSelectUnit}
+              selectedUnit={selectedUnit}
+              onClose={handleCloseUnitPanel}
+            />
+          </div>
+        )}
+        
+        <div className="relative flex-1">
           {showUnitDetails && selectedUnit && (
             <div 
               className="absolute z-10"
