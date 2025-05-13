@@ -1,6 +1,5 @@
 import React from 'react';
 import { Unit } from '../types';
-import { CircleUser } from 'lucide-react';
 
 interface UnitIconProps {
   unit: Unit;
@@ -15,20 +14,40 @@ const UnitIcon: React.FC<UnitIconProps> = ({
   selected = false, 
   onClick 
 }) => {
-  const bgColor = unit.isEnemy ? 'bg-red-600' : 'bg-blue-500';
-  const iconColor = unit.isEnemy ? 'text-red-100' : 'text-blue-100';
-  const borderStyle = selected ? 'ring-2 ring-white ring-offset-1 ring-offset-gray-900' : '';
-  const iconShape = unit.isEnemy ? 'rotate-45' : '';
+  // MIL-STD-2525C frame colors
+  const frameColor = unit.isEnemy ? '#FF0000' : '#0000FF';
+  const fillColor = unit.isEnemy ? '#FF8080' : '#80B0FF';
+  
+  // Calculate dimensions
+  const frameSize = size;
+  const octagonPoints = calculateOctagonPoints(frameSize);
+  
+  // Generate octagon path for frame
+  const octagonPath = `M ${octagonPoints.map(p => `${p.x},${p.y}`).join(' L ')} Z`;
   
   return (
     <div 
-      className={`${bgColor} ${borderStyle} ${iconShape} rounded-sm flex items-center justify-center cursor-pointer transition-all duration-200 hover:brightness-110`}
+      className="relative cursor-pointer transition-all duration-200 hover:brightness-110"
       style={{ width: size, height: size }}
       onClick={onClick}
     >
-      <div className={`${iconColor}`}>
-        <CircleUser size={size * 0.6} />
-      </div>
+      <svg
+        width={size}
+        height={size}
+        viewBox={`0 0 ${size} ${size}`}
+        className={selected ? 'ring-2 ring-white ring-offset-1 ring-offset-gray-900' : ''}
+      >
+        {/* Frame */}
+        <path
+          d={octagonPath}
+          fill={fillColor}
+          stroke={frameColor}
+          strokeWidth="1.5"
+        />
+        
+        {/* Unit Type Symbol */}
+        {getUnitTypeSymbol(unit.type, size/2, size/2, size * 0.5, frameColor)}
+      </svg>
       
       {unit.id && (
         <div 
@@ -40,5 +59,79 @@ const UnitIcon: React.FC<UnitIconProps> = ({
     </div>
   );
 };
+
+// Helper function to calculate octagon points
+function calculateOctagonPoints(size: number) {
+  const center = size / 2;
+  const radius = (size - 2) / 2; // Slight padding
+  const points = [];
+  
+  for (let i = 0; i < 8; i++) {
+    const angle = (Math.PI / 4) * i;
+    points.push({
+      x: center + radius * Math.cos(angle),
+      y: center + radius * Math.sin(angle)
+    });
+  }
+  
+  return points;
+}
+
+// Helper function to generate unit type symbols
+function getUnitTypeSymbol(type: string, cx: number, cy: number, size: number, color: string) {
+  const symbolSize = size * 0.6;
+  
+  switch (type) {
+    case 'Infantry':
+      return (
+        <path
+          d={`M ${cx-symbolSize/3},${cy+symbolSize/3} L ${cx},${cy-symbolSize/3} L ${cx+symbolSize/3},${cy+symbolSize/3}`}
+          stroke={color}
+          strokeWidth="1.5"
+          fill="none"
+        />
+      );
+    case 'Armor':
+      return (
+        <path
+          d={`M ${cx-symbolSize/2},${cy} L ${cx+symbolSize/2},${cy} M ${cx-symbolSize/3},${cy-symbolSize/3} L ${cx+symbolSize/3},${cy-symbolSize/3} M ${cx-symbolSize/3},${cy+symbolSize/3} L ${cx+symbolSize/3},${cy+symbolSize/3}`}
+          stroke={color}
+          strokeWidth="1.5"
+          fill="none"
+        />
+      );
+    case 'Artillery':
+      return (
+        <circle
+          cx={cx}
+          cy={cy}
+          r={symbolSize/3}
+          stroke={color}
+          strokeWidth="1.5"
+          fill="none"
+        />
+      );
+    case 'Command':
+      return (
+        <path
+          d={`M ${cx-symbolSize/3},${cy-symbolSize/3} L ${cx+symbolSize/3},${cy+symbolSize/3} M ${cx-symbolSize/3},${cy+symbolSize/3} L ${cx+symbolSize/3},${cy-symbolSize/3}`}
+          stroke={color}
+          strokeWidth="1.5"
+          fill="none"
+        />
+      );
+    case 'Enemy':
+      return (
+        <path
+          d={`M ${cx-symbolSize/3},${cy} L ${cx+symbolSize/3},${cy} M ${cx},${cy-symbolSize/3} L ${cx},${cy+symbolSize/3}`}
+          stroke={color}
+          strokeWidth="1.5"
+          fill="none"
+        />
+      );
+    default:
+      return null;
+  }
+}
 
 export default UnitIcon;
