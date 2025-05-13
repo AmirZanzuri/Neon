@@ -35,7 +35,7 @@ const UnitPanel: React.FC<UnitPanelProps> = ({ units, onSelectUnit, selectedUnit
   
   return (
     <div className="h-full flex flex-col bg-black/40">
-      <div className="flex-shrink-0 p-2 space-y-2">
+      <div className="flex-none p-2 space-y-2">
         <div className="flex items-center justify-between">
           <h2 className="text-sm font-semibold">FFT</h2>
           <div className="flex items-center space-x-1">
@@ -87,7 +87,7 @@ const UnitPanel: React.FC<UnitPanelProps> = ({ units, onSelectUnit, selectedUnit
         </div>
       </div>
       
-      <div className="flex-1 overflow-y-auto">
+      <div className="flex-1 overflow-y-auto min-h-0">
         {echelons.map(echelon => (
           <div key={`echelon-${echelon}`} className="border-b border-gray-800/30">
             <button 
