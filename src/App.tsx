@@ -45,7 +45,7 @@ function App() {
   );
   
   return (
-    <div className="flex h-screen bg-gray-900 text-white overflow-hidden">
+    <div className="flex h-screen bg-[#0a1018] text-white overflow-hidden">
       <div className="absolute inset-0">
         <Map 
           units={units}
