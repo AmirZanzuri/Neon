@@ -34,18 +34,18 @@ const UnitPanel: React.FC<UnitPanelProps> = ({ units, onSelectUnit, selectedUnit
   };
   
   return (
-    <div className="h-full flex flex-col bg-black/87">
+    <div className="h-full flex flex-col bg-black/40">
       <div className="flex-shrink-0 p-2 space-y-2">
         <div className="flex items-center justify-between">
           <h2 className="text-sm font-semibold">FFT</h2>
           <div className="flex items-center space-x-1">
-            <button className="p-1 bg-red-600/60 rounded-sm">
+            <button className="p-1 bg-red-600/90 rounded-sm">
               <span className="sr-only">Enemy</span>
             </button>
-            <button className="p-1 bg-blue-500/60 rounded-sm">
+            <button className="p-1 bg-blue-500/90 rounded-sm">
               <span className="sr-only">Friendly</span>
             </button>
-            <button className="p-1 border border-gray-600/50 rounded-sm">
+            <button className="p-1 border border-gray-600/90 rounded-sm">
               <span className="sr-only">Move</span>
             </button>
             <button 
@@ -57,10 +57,10 @@ const UnitPanel: React.FC<UnitPanelProps> = ({ units, onSelectUnit, selectedUnit
           </div>
         </div>
         
-        <div className="text-xs text-gray-400">Filters</div>
+        <div className="text-xs text-gray-300">Filters</div>
         
-        <div className="flex items-center p-1.5 bg-black/80 rounded">
-          <Search size={14} className="text-gray-500 mr-2" />
+        <div className="flex items-center p-1.5 bg-black/30 rounded">
+          <Search size={14} className="text-gray-400 mr-2" />
           <input
             type="text"
             placeholder="Search"
@@ -68,7 +68,7 @@ const UnitPanel: React.FC<UnitPanelProps> = ({ units, onSelectUnit, selectedUnit
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <button className="text-gray-500">
+          <button className="text-gray-400">
             <Filter size={14} />
           </button>
         </div>
@@ -76,22 +76,22 @@ const UnitPanel: React.FC<UnitPanelProps> = ({ units, onSelectUnit, selectedUnit
         <div className="flex justify-between items-center text-xs text-gray-400">
           <div className="flex items-center space-x-2">
             <span>Group by</span>
-            <button className="bg-black/80 rounded px-2 py-1 flex items-center">
+            <button className="bg-black/30 rounded px-2 py-1 flex items-center">
               <span>Echelon</span>
               <ChevronDown size={14} className="ml-1" />
             </button>
           </div>
-          <button className="bg-black/80 rounded px-2 py-1">
+          <button className="bg-black/30 rounded px-2 py-1">
             Orbit
           </button>
         </div>
       </div>
       
-      <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent">
+      <div className="flex-1 overflow-y-auto">
         {echelons.map(echelon => (
-          <div key={`echelon-${echelon}`} className="border-b border-white/5">
+          <div key={`echelon-${echelon}`} className="border-b border-gray-800/30">
             <button 
-              className="w-full flex items-center p-2 hover:bg-black/80 text-gray-300"
+              className="w-full flex items-center p-2 hover:bg-black/40 text-gray-300"
               onClick={() => toggleEchelon(echelon)}
             >
               {expandedEchelons.includes(echelon) ? (
