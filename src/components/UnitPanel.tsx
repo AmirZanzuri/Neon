@@ -35,7 +35,7 @@ const UnitPanel: React.FC<UnitPanelProps> = ({ units, onSelectUnit, selectedUnit
   
   return (
     <div className="h-full flex flex-col bg-black/20">
-      <div className="flex-none p-2 space-y-2 bg-black/20">
+      <div className="flex-none p-2 space-y-2">
         <div className="flex items-center justify-between">
           <h2 className="text-sm font-semibold">FFT</h2>
           <div className="flex items-center space-x-1">
@@ -87,11 +87,11 @@ const UnitPanel: React.FC<UnitPanelProps> = ({ units, onSelectUnit, selectedUnit
         </div>
       </div>
       
-      <div className="flex-1 overflow-y-auto min-h-0 scrollbar-none">
+      <div className="flex-1 overflow-y-auto min-h-0 scrollbar-none bg-black/20">
         {echelons.map(echelon => (
           <div key={`echelon-${echelon}`} className="border-b border-gray-800/20">
             <button 
-              className="w-full flex items-center p-2 hover:bg-black/20 text-gray-300"
+              className="w-full flex items-center p-2 hover:bg-black/30 text-gray-300"
               onClick={() => toggleEchelon(echelon)}
             >
               {expandedEchelons.includes(echelon) ? (
