@@ -64,6 +64,9 @@ const MapView: React.FC<MapViewProps> = ({
         dragRotate={false}
         attributionControl={false}
         reuseMaps
+        style={{ width: '100%', height: '100%' }}
+        cursor="grab"
+        interactive={true}
       >
         {/* Render boundaries */}
         <Source type="geojson" data={boundariesGeoJSON}>
