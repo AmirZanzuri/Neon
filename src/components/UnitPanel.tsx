@@ -34,7 +34,7 @@ const UnitPanel: React.FC<UnitPanelProps> = ({ units, onSelectUnit, selectedUnit
   };
   
   return (
-    <div className="h-full flex flex-col bg-[#1a2638]/95 backdrop-blur-sm">
+    <div className="h-full flex flex-col bg-[#1a2638]/60 backdrop-blur-sm">
       <div className="flex-none p-2 space-y-2">
         <div className="flex items-center justify-between">
           <h2 className="text-sm font-semibold">FFT</h2>
@@ -59,7 +59,7 @@ const UnitPanel: React.FC<UnitPanelProps> = ({ units, onSelectUnit, selectedUnit
         
         <div className="text-xs text-gray-300">Filters</div>
         
-        <div className="flex items-center p-1.5 bg-[#1e2c40]/80 rounded">
+        <div className="flex items-center p-1.5 bg-[#1e2c40]/60 rounded">
           <Search size={14} className="text-gray-400 mr-2" />
           <input
             type="text"
@@ -76,12 +76,12 @@ const UnitPanel: React.FC<UnitPanelProps> = ({ units, onSelectUnit, selectedUnit
         <div className="flex justify-between items-center text-xs text-gray-400">
           <div className="flex items-center space-x-2">
             <span>Group by</span>
-            <button className="bg-[#1e2c40]/80 rounded px-2 py-1 flex items-center">
+            <button className="bg-[#1e2c40]/60 rounded px-2 py-1 flex items-center">
               <span>Echelon</span>
               <ChevronDown size={14} className="ml-1" />
             </button>
           </div>
-          <button className="bg-[#1e2c40]/80 rounded px-2 py-1">
+          <button className="bg-[#1e2c40]/60 rounded px-2 py-1">
             Orbit
           </button>
         </div>

@@ -45,7 +45,7 @@ const Toolbar: React.FC<ToolbarProps> = ({ buttons }) => {
   
   return (
     <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex items-center">
-      <div className="bg-[#1a2638]/95 backdrop-blur-sm rounded-t-md px-2 py-1 flex items-center space-x-4">
+      <div className="bg-[#1a2638]/60 backdrop-blur-sm rounded-t-md px-2 py-1 flex items-center space-x-4">
         {buttons.map((button, index) => (
           <React.Fragment key={button.id}>
             <button
