@@ -14,9 +14,9 @@ const UnitIcon: React.FC<UnitIconProps> = ({
   selected = false, 
   onClick 
 }) => {
-  // MIL-STD-2525C frame colors
-  const frameColor = unit.isEnemy ? '#FF0000' : '#0000FF';
-  const fillColor = unit.isEnemy ? '#FF8080' : '#80B0FF';
+  // MIL-STD-2525C frame colors with transparency
+  const frameColor = unit.isEnemy ? 'rgba(255, 0, 0, 0.9)' : 'rgba(0, 0, 255, 0.9)';
+  const fillColor = unit.isEnemy ? 'rgba(255, 128, 128, 0.4)' : 'rgba(128, 176, 255, 0.4)';
   
   // Calculate dimensions
   const frameSize = size;
@@ -27,35 +27,43 @@ const UnitIcon: React.FC<UnitIconProps> = ({
   
   return (
     <div 
-      className="relative cursor-pointer transition-all duration-200 hover:brightness-110"
+      className="relative cursor-pointer group"
       style={{ width: size, height: size }}
       onClick={onClick}
     >
+      <div className="absolute inset-0 bg-black/10 rounded-sm group-hover:bg-black/20 transition-all duration-300"></div>
       <svg
         width={size}
         height={size}
         viewBox={`0 0 ${size} ${size}`}
-        className={selected ? 'ring-2 ring-white ring-offset-1 ring-offset-gray-900' : ''}
+        className={`transition-all duration-300 ${
+          selected ? 'ring-2 ring-white/50 ring-offset-1 ring-offset-[#1a2638]/60' : ''
+        } group-hover:brightness-125`}
       >
+        {/* Glow effect */}
+        <defs>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+        
         {/* Frame */}
         <path
           d={octagonPath}
           fill={fillColor}
           stroke={frameColor}
           strokeWidth="1.5"
+          filter="url(#glow)"
+          className="transition-all duration-300"
         />
         
         {/* Unit Type Symbol */}
         {getUnitTypeSymbol(unit.type, size/2, size/2, size * 0.5, frameColor)}
       </svg>
-      
-      {unit.id && (
-        <div 
-          className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 text-[10px] bg-black/70 px-1 rounded text-white whitespace-nowrap"
-        >
-          {unit.id}
-        </div>
-      )}
     </div>
   );
 };
@@ -63,7 +71,7 @@ const UnitIcon: React.FC<UnitIconProps> = ({
 // Helper function to calculate octagon points
 function calculateOctagonPoints(size: number) {
   const center = size / 2;
-  const radius = (size - 2) / 2; // Slight padding
+  const radius = (size - 2) / 2;
   const points = [];
   
   for (let i = 0; i < 8; i++) {
@@ -89,6 +97,7 @@ function getUnitTypeSymbol(type: string, cx: number, cy: number, size: number, c
           stroke={color}
           strokeWidth="1.5"
           fill="none"
+          className="transition-all duration-300"
         />
       );
     case 'Armor':
@@ -98,6 +107,7 @@ function getUnitTypeSymbol(type: string, cx: number, cy: number, size: number, c
           stroke={color}
           strokeWidth="1.5"
           fill="none"
+          className="transition-all duration-300"
         />
       );
     case 'Artillery':
@@ -109,6 +119,7 @@ function getUnitTypeSymbol(type: string, cx: number, cy: number, size: number, c
           stroke={color}
           strokeWidth="1.5"
           fill="none"
+          className="transition-all duration-300"
         />
       );
     case 'Command':
@@ -118,6 +129,7 @@ function getUnitTypeSymbol(type: string, cx: number, cy: number, size: number, c
           stroke={color}
           strokeWidth="1.5"
           fill="none"
+          className="transition-all duration-300"
         />
       );
     case 'Enemy':
@@ -127,6 +139,7 @@ function getUnitTypeSymbol(type: string, cx: number, cy: number, size: number, c
           stroke={color}
           strokeWidth="1.5"
           fill="none"
+          className="transition-all duration-300"
         />
       );
     default:
