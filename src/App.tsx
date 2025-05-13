@@ -57,7 +57,7 @@ function App() {
       </div>
 
       {showUnitPanel && (
-        <div className="relative w-64 flex-shrink-0 h-full z-10">
+        <div className="relative ml-2 w-64 flex-shrink-0 h-full z-10">
           <UnitPanel 
             units={units} 
             onSelectUnit={handleSelectUnit}
