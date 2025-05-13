@@ -39,45 +39,41 @@ function App() {
   };
   
   return (
-    <div className="flex flex-col h-screen bg-gray-900 text-white relative">
-      <div className="flex-1 flex overflow-hidden relative">
-        <div className="absolute inset-0">
-          <Map 
-            units={units}
-            targets={targetsMock}
-            boundaries={boundariesMock}
+    <div className="flex h-screen bg-gray-900 text-white overflow-hidden">
+      {showUnitPanel && (
+        <div className="w-64 flex-shrink-0 h-full">
+          <UnitPanel 
+            units={units} 
             onSelectUnit={handleSelectUnit}
-            selectedUnitId={selectedUnit?.id || null}
+            selectedUnit={selectedUnit}
+            onClose={handleCloseUnitPanel}
           />
         </div>
-
-        {showUnitPanel && (
-          <div className="relative z-10 w-64 flex-shrink-0">
-            <UnitPanel 
-              units={units} 
-              onSelectUnit={handleSelectUnit}
-              selectedUnit={selectedUnit}
-              onClose={handleCloseUnitPanel}
+      )}
+      
+      <div className="flex-1 relative">
+        <Map 
+          units={units}
+          targets={targetsMock}
+          boundaries={boundariesMock}
+          onSelectUnit={handleSelectUnit}
+          selectedUnitId={selectedUnit?.id || null}
+        />
+        
+        {showUnitDetails && selectedUnit && (
+          <div 
+            className="absolute z-10"
+            style={getUnitDetailsPosition()}
+          >
+            <UnitDetails 
+              unit={selectedUnit}
+              onClose={handleCloseUnitDetails}
             />
           </div>
         )}
-        
-        <div className="relative flex-1">
-          {showUnitDetails && selectedUnit && (
-            <div 
-              className="absolute z-10"
-              style={getUnitDetailsPosition()}
-            >
-              <UnitDetails 
-                unit={selectedUnit}
-                onClose={handleCloseUnitDetails}
-              />
-            </div>
-          )}
 
-          <Header />
-          <Toolbar buttons={toolbarButtonsMock} />
-        </div>
+        <Header />
+        <Toolbar buttons={toolbarButtonsMock} />
       </div>
     </div>
   );
