@@ -12,7 +12,7 @@ interface UnitRowProps {
 const UnitRow: React.FC<UnitRowProps> = ({ unit, isSelected, onSelect }) => {
   return (
     <div 
-      className={`p-2 flex items-center hover:bg-[#2d4266]/67 cursor-pointer ${isSelected ? 'bg-[#2d4266]/67' : ''}`}
+      className={`p-2 flex items-center hover:bg-[#2d4266]/85 cursor-pointer ${isSelected ? 'bg-[#2d4266]/85' : ''}`}
       onClick={onSelect}
     >
       <UnitIcon unit={unit} size={20} />
@@ -24,7 +24,7 @@ const UnitRow: React.FC<UnitRowProps> = ({ unit, isSelected, onSelect }) => {
         </div>
       </div>
       
-      <button className="p-1 hover:bg-[#2d4266]/67 rounded text-gray-400">
+      <button className="p-1 hover:bg-[#2d4266]/85 rounded text-gray-400">
         <MoreVertical size={14} />
       </button>
     </div>

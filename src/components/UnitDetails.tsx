@@ -17,9 +17,9 @@ const UnitDetails: React.FC<UnitDetailsProps> = ({ unit, onClose }) => {
       <div className="grid grid-cols-4 gap-2 mt-4">
         {unit.ammo.map((ammo) => (
           <div key={ammo.type} className="flex flex-col items-center">
-            <div className="h-24 w-6 bg-[#243552]/67 rounded-sm relative flex flex-col-reverse">
+            <div className="h-24 w-6 bg-[#243552]/85 rounded-sm relative flex flex-col-reverse">
               <div
-                className={`w-full rounded-sm ${ammo.current < 30 ? 'bg-red-500/67' : 'bg-green-500/67'}`}
+                className={`w-full rounded-sm ${ammo.current < 30 ? 'bg-red-500/85' : 'bg-green-500/85'}`}
                 style={{ height: `${(ammo.current / ammo.max) * 100}%` }}
               ></div>
             </div>
@@ -34,8 +34,8 @@ const UnitDetails: React.FC<UnitDetailsProps> = ({ unit, onClose }) => {
   };
   
   return (
-    <div className="bg-[#1a2638]/67 backdrop-blur-sm text-white rounded shadow-lg overflow-hidden w-80 border border-[#2d4266]/67">
-      <div className="flex justify-end p-2 border-b border-[#2d4266]/67">
+    <div className="bg-[#1a2638]/85 backdrop-blur-sm text-white rounded shadow-lg overflow-hidden w-80 border border-[#2d4266]/85">
+      <div className="flex justify-end p-2 border-b border-[#2d4266]/85">
         <button onClick={onClose} className="text-gray-400 hover:text-white">
           <X size={16} />
         </button>
@@ -86,11 +86,11 @@ const UnitDetails: React.FC<UnitDetailsProps> = ({ unit, onClose }) => {
         {renderAmmoStatus()}
       </div>
       
-      <div className="flex border-t border-[#2d4266]/67">
+      <div className="flex border-t border-[#2d4266]/85">
         <button
           className={`flex-1 p-2 flex items-center justify-center ${
-            activeTab === 'chat' ? 'bg-[#2d4266]/67' : ''
-          } hover:bg-[#2d4266]/80`}
+            activeTab === 'chat' ? 'bg-[#2d4266]/85' : ''
+          } hover:bg-[#2d4266]/95`}
           onClick={() => setActiveTab('chat')}
         >
           <MessageSquare size={14} className="mr-1" />
@@ -99,8 +99,8 @@ const UnitDetails: React.FC<UnitDetailsProps> = ({ unit, onClose }) => {
         
         <button
           className={`flex-1 p-2 flex items-center justify-center ${
-            activeTab === 'center' ? 'bg-[#2d4266]/67' : ''
-          } hover:bg-[#2d4266]/80`}
+            activeTab === 'center' ? 'bg-[#2d4266]/85' : ''
+          } hover:bg-[#2d4266]/95`}
           onClick={() => setActiveTab('center')}
         >
           <Target size={14} className="mr-1" />
@@ -109,8 +109,8 @@ const UnitDetails: React.FC<UnitDetailsProps> = ({ unit, onClose }) => {
         
         <button
           className={`flex-1 p-2 flex items-center justify-center ${
-            activeTab === 'info' ? 'bg-[#2d4266]/67' : ''
-          } hover:bg-[#2d4266]/80`}
+            activeTab === 'info' ? 'bg-[#2d4266]/85' : ''
+          } hover:bg-[#2d4266]/95`}
           onClick={() => setActiveTab('info')}
         >
           <Info size={14} className="mr-1" />
@@ -119,8 +119,8 @@ const UnitDetails: React.FC<UnitDetailsProps> = ({ unit, onClose }) => {
         
         <button
           className={`flex-1 p-2 flex items-center justify-center ${
-            activeTab === 'more' ? 'bg-[#2d4266]/67' : ''
-          } hover:bg-[#2d4266]/80`}
+            activeTab === 'more' ? 'bg-[#2d4266]/85' : ''
+          } hover:bg-[#2d4266]/95`}
           onClick={() => setActiveTab('more')}
         >
           <MoreHorizontal size={14} className="mr-1" />
