@@ -45,11 +45,11 @@ const Toolbar: React.FC<ToolbarProps> = ({ buttons }) => {
   
   return (
     <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex items-center">
-      <div className="bg-[#1a1a1a]/95 rounded-t-md px-2 py-1 flex items-center space-x-4">
+      <div className="bg-black/95 rounded-t-md px-2 py-1 flex items-center space-x-4">
         {buttons.map((button, index) => (
           <React.Fragment key={button.id}>
             <button
-              className="p-1.5 rounded-sm hover:bg-[#111111]/80 text-gray-400 hover:text-white transition-colors"
+              className="p-1.5 rounded-sm hover:bg-black/80 text-gray-400 hover:text-white transition-colors"
               onClick={button.action}
               title={button.name}
             >
@@ -63,7 +63,7 @@ const Toolbar: React.FC<ToolbarProps> = ({ buttons }) => {
         
         <div className="h-6 w-px bg-white/5"></div>
         
-        <button className="p-1.5 rounded-sm hover:bg-[#111111]/80 text-gray-400 hover:text-white transition-colors">
+        <button className="p-1.5 rounded-sm hover:bg-black/80 text-gray-400 hover:text-white transition-colors">
           <ChevronRight size={16} />
         </button>
       </div>

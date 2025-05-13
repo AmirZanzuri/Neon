@@ -34,7 +34,7 @@ const UnitPanel: React.FC<UnitPanelProps> = ({ units, onSelectUnit, selectedUnit
   };
   
   return (
-    <div className="h-full flex flex-col bg-[#1a1a1a]/95">
+    <div className="h-full flex flex-col bg-black/95">
       <div className="flex-shrink-0 p-2 space-y-2">
         <div className="flex items-center justify-between">
           <h2 className="text-sm font-semibold">FFT</h2>
@@ -59,7 +59,7 @@ const UnitPanel: React.FC<UnitPanelProps> = ({ units, onSelectUnit, selectedUnit
         
         <div className="text-xs text-gray-400">Filters</div>
         
-        <div className="flex items-center p-1.5 bg-[#111111]/90 rounded">
+        <div className="flex items-center p-1.5 bg-black/80 rounded">
           <Search size={14} className="text-gray-500 mr-2" />
           <input
             type="text"
@@ -76,22 +76,22 @@ const UnitPanel: React.FC<UnitPanelProps> = ({ units, onSelectUnit, selectedUnit
         <div className="flex justify-between items-center text-xs text-gray-400">
           <div className="flex items-center space-x-2">
             <span>Group by</span>
-            <button className="bg-[#111111]/90 rounded px-2 py-1 flex items-center">
+            <button className="bg-black/80 rounded px-2 py-1 flex items-center">
               <span>Echelon</span>
               <ChevronDown size={14} className="ml-1" />
             </button>
           </div>
-          <button className="bg-[#111111]/90 rounded px-2 py-1">
+          <button className="bg-black/80 rounded px-2 py-1">
             Orbit
           </button>
         </div>
       </div>
       
-      <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-800 scrollbar-track-transparent">
+      <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent">
         {echelons.map(echelon => (
           <div key={`echelon-${echelon}`} className="border-b border-white/5">
             <button 
-              className="w-full flex items-center p-2 hover:bg-[#111111]/80 text-gray-300"
+              className="w-full flex items-center p-2 hover:bg-black/80 text-gray-300"
               onClick={() => toggleEchelon(echelon)}
             >
               {expandedEchelons.includes(echelon) ? (
