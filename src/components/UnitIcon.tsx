@@ -10,13 +10,13 @@ interface UnitIconProps {
 
 const UnitIcon: React.FC<UnitIconProps> = ({ 
   unit, 
-  size = 24, 
+  size = 36, // Increased default size
   selected = false, 
   onClick 
 }) => {
-  // MIL-STD-2525C frame colors with transparency
-  const frameColor = unit.isEnemy ? 'rgba(255, 0, 0, 0.9)' : 'rgba(0, 0, 255, 0.9)';
-  const fillColor = unit.isEnemy ? 'rgba(255, 128, 128, 0.4)' : 'rgba(128, 176, 255, 0.4)';
+  // More transparent colors for subtlety
+  const frameColor = unit.isEnemy ? 'rgba(255, 0, 0, 0.6)' : 'rgba(0, 0, 255, 0.6)';
+  const fillColor = unit.isEnemy ? 'rgba(255, 128, 128, 0.15)' : 'rgba(128, 176, 255, 0.15)';
   
   // Calculate dimensions
   const frameSize = size;
@@ -31,44 +31,48 @@ const UnitIcon: React.FC<UnitIconProps> = ({
       style={{ width: size, height: size }}
       onClick={onClick}
     >
-      <div className="absolute inset-0 bg-black/10 rounded-sm group-hover:bg-black/20 transition-all duration-300"></div>
+      {/* Larger, more subtle background glow */}
+      <div className="absolute inset-0 bg-black/5 rounded-sm group-hover:bg-black/10 transition-all duration-300 scale-150"></div>
+      
       <svg
         width={size}
         height={size}
         viewBox={`0 0 ${size} ${size}`}
         className={`transition-all duration-300 ${
-          selected ? 'ring-2 ring-white/50 ring-offset-1 ring-offset-[#1a2638]/60' : ''
+          selected ? 'ring-1 ring-white/30 ring-offset-2 ring-offset-[#1a2638]/60' : ''
         } group-hover:brightness-125`}
       >
-        {/* Glow effect */}
         <defs>
           <filter id="glow">
-            <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
+            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
             <feMerge>
               <feMergeNode in="coloredBlur"/>
               <feMergeNode in="SourceGraphic"/>
             </feMerge>
           </filter>
+          <filter id="softLight">
+            <feGaussianBlur stdDeviation="1.5"/>
+            <feComposite operator="in" in2="SourceGraphic"/>
+          </filter>
         </defs>
         
-        {/* Frame */}
+        {/* Larger frame with softer edges */}
         <path
           d={octagonPath}
           fill={fillColor}
           stroke={frameColor}
-          strokeWidth="1.5"
+          strokeWidth="1"
           filter="url(#glow)"
           className="transition-all duration-300"
         />
         
-        {/* Unit Type Symbol */}
-        {getUnitTypeSymbol(unit.type, size/2, size/2, size * 0.5, frameColor)}
+        {/* Larger unit type symbol */}
+        {getUnitTypeSymbol(unit.type, size/2, size/2, size * 0.7, frameColor)}
       </svg>
     </div>
   );
 };
 
-// Helper function to calculate octagon points
 function calculateOctagonPoints(size: number) {
   const center = size / 2;
   const radius = (size - 2) / 2;
@@ -85,9 +89,8 @@ function calculateOctagonPoints(size: number) {
   return points;
 }
 
-// Helper function to generate unit type symbols
 function getUnitTypeSymbol(type: string, cx: number, cy: number, size: number, color: string) {
-  const symbolSize = size * 0.6;
+  const symbolSize = size * 0.7; // Increased symbol size ratio
   
   switch (type) {
     case 'Infantry':
@@ -95,7 +98,7 @@ function getUnitTypeSymbol(type: string, cx: number, cy: number, size: number, c
         <path
           d={`M ${cx-symbolSize/3},${cy+symbolSize/3} L ${cx},${cy-symbolSize/3} L ${cx+symbolSize/3},${cy+symbolSize/3}`}
           stroke={color}
-          strokeWidth="1.5"
+          strokeWidth="1"
           fill="none"
           className="transition-all duration-300"
         />
@@ -105,7 +108,7 @@ function getUnitTypeSymbol(type: string, cx: number, cy: number, size: number, c
         <path
           d={`M ${cx-symbolSize/2},${cy} L ${cx+symbolSize/2},${cy} M ${cx-symbolSize/3},${cy-symbolSize/3} L ${cx+symbolSize/3},${cy-symbolSize/3} M ${cx-symbolSize/3},${cy+symbolSize/3} L ${cx+symbolSize/3},${cy+symbolSize/3}`}
           stroke={color}
-          strokeWidth="1.5"
+          strokeWidth="1"
           fill="none"
           className="transition-all duration-300"
         />
@@ -117,7 +120,7 @@ function getUnitTypeSymbol(type: string, cx: number, cy: number, size: number, c
           cy={cy}
           r={symbolSize/3}
           stroke={color}
-          strokeWidth="1.5"
+          strokeWidth="1"
           fill="none"
           className="transition-all duration-300"
         />
@@ -127,7 +130,7 @@ function getUnitTypeSymbol(type: string, cx: number, cy: number, size: number, c
         <path
           d={`M ${cx-symbolSize/3},${cy-symbolSize/3} L ${cx+symbolSize/3},${cy+symbolSize/3} M ${cx-symbolSize/3},${cy+symbolSize/3} L ${cx+symbolSize/3},${cy-symbolSize/3}`}
           stroke={color}
-          strokeWidth="1.5"
+          strokeWidth="1"
           fill="none"
           className="transition-all duration-300"
         />
@@ -137,7 +140,7 @@ function getUnitTypeSymbol(type: string, cx: number, cy: number, size: number, c
         <path
           d={`M ${cx-symbolSize/3},${cy} L ${cx+symbolSize/3},${cy} M ${cx},${cy-symbolSize/3} L ${cx},${cy+symbolSize/3}`}
           stroke={color}
-          strokeWidth="1.5"
+          strokeWidth="1"
           fill="none"
           className="transition-all duration-300"
         />
