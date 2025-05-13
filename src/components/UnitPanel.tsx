@@ -123,3 +123,5 @@ const UnitPanel: React.FC<UnitPanelProps> = ({ units, onSelectUnit, selectedUnit
     </div>
   );
 };
+
+export default UnitPanel
