@@ -130,3 +130,5 @@ const UnitDetails: React.FC<UnitDetailsProps> = ({ unit, onClose }) => {
     </div>
   );
 };
+
+export default UnitDetails
