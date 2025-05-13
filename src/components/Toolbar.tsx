@@ -70,3 +70,5 @@ const Toolbar: React.FC<ToolbarProps> = ({ buttons }) => {
     </div>
   );
 };
+
+export default Toolbar
